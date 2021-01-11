@@ -1,5 +1,6 @@
 package com.example.kotlin.ui.home.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -15,7 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kotlin.R
 import com.example.kotlin.model.*
+import com.example.kotlin.test.MainActivity2
+import com.example.kotlin.ui.home.ChannelActivity
 import com.example.kotlin.ui.home.adapter.*
+import com.example.kotlin.ui.mine.MineFragment
 import com.example.kotlin.utils.TxtUtils
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_home.*
@@ -29,7 +33,11 @@ import java.io.InputStreamReader
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
-class HomeFragment :Fragment() {
+class HomeFragment : Fragment() {
+    companion object {
+        val instance by lazy { HomeFragment() }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -59,14 +67,17 @@ class HomeFragment :Fragment() {
         Log.d("TAG", "loadHomeData: ")
 
     }
+
     private fun showCate(categoryList: List<Category>) {
-        ry_live_cate.layoutManager= GridLayoutManager(activity,1)
-        ry_live_cate.adapter= CateAdapter(categoryList,activity)
+        ry_live_cate.layoutManager = GridLayoutManager(activity, 1)
+        ry_live_cate.adapter = CateAdapter(categoryList, activity)
     }
+
     private fun showTop(topicList: List<Topic>) {
         ry_top.layoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
         ry_top.adapter = activity?.let { TopAdapter(topicList, it) }
     }
+
     //人气推荐
     private fun showPerson(hotGoodsList: List<HotGoods>) {
         ry_person.layoutManager = GridLayoutManager(activity, 1)
@@ -80,7 +91,7 @@ class HomeFragment :Fragment() {
 
     }
 
-    //品牌列表
+    //新品首发
     private fun showNewList(newGoodsList: List<NewGoods>) {
         ry_monday.layoutManager = GridLayoutManager(activity, 2)
         ry_monday.adapter = activity?.let { NewAdapter(newGoodsList, it) }
@@ -99,14 +110,26 @@ class HomeFragment :Fragment() {
         var layoutchannel = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1F)
         channel!!.forEach {
             var inflate =
-                LayoutInflater.from(activity).inflate(R.layout.layout_channel_item, layout_tab, false)
+                LayoutInflater.from(activity)
+                    .inflate(R.layout.layout_channel_item, layout_tab, false)
             Glide.with(this).load(it.icon_url).into(inflate.img_channel)
             TxtUtils.setTextView(inflate.txt_channel, it.name)
             inflate.txt_channel.setGravity(Gravity.CENTER)
             inflate.setLayoutParams(layoutchannel)
             layout_tab.addView(inflate)
+
+            inflate.setTag(it.id)
+            //点几跳转
+            inflate.setOnClickListener {
+
+                var id = inflate.getTag()
+                val intent = Intent()
+                activity?.let { it1 -> intent.setClass(it1, ChannelActivity::class.java) }
+                startActivity(intent)
+            }
         }
     }
+
 
     //显示banner
     private fun showBanner(banners: List<Banner>) {

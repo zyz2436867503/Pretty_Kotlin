@@ -1,3 +1,4 @@
+/*
 package com.example.kotlin.ui
 
 import androidx.appcompat.app.AppCompatActivity
@@ -7,10 +8,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.kotlin.R
 import com.example.kotlin.ui.home.fragment.HomeFragment
-import com.shop.ui.home.fragment.MeFragment
-import com.shop.ui.home.fragment.ShopFragment
-import com.shop.ui.home.fragment.SortFragment
-import com.shop.ui.home.fragment.TopicFragment
 import kotlinx.android.synthetic.main.activity_all.*
 
 
@@ -65,3 +62,4 @@ class ViewPage(supportFragmentManager: FragmentManager, var fragments: ArrayList
     }
 
 }
+*/

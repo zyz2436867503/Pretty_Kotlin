@@ -1,11 +1,12 @@
-package com.example.kotlin
+package com.example.kotlin.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.kotlin.R
 
-class MainActivity2 : AppCompatActivity() {
+class ChannelActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.activity_channel)
     }
 }

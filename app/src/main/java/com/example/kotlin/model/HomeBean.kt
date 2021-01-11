@@ -1,12 +1,12 @@
 package com.example.kotlin.model
 
 data class HomeBean(
-    val `data`: Data,
+    val `data`: DataHome,
     val errmsg: String,
     val errno: Int
 )
 
-data class Data(
+data class DataHome(
     val banner: List<Banner>,
     val brandList: List<Brand>,
     val categoryList: List<Category>,

@@ -1,8 +1,9 @@
-package com.example.kotlin
+package com.example.kotlin.test
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.kotlin.R
 import com.example.kotlin.ui.login.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
