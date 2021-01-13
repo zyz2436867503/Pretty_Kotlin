@@ -1,4 +1,4 @@
-package com.example.kotlin.ui.home.fragment
+package com.example.kotlin.ui.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,13 +15,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kotlin.R
+import com.example.kotlin.databinding.FragmentHousepageBinding
 import com.example.kotlin.model.*
 import com.example.kotlin.test.MainActivity2
 import com.example.kotlin.ui.home.ChannelActivity
 import com.example.kotlin.ui.home.adapter.*
 import com.example.kotlin.ui.mine.MineFragment
 import com.example.kotlin.utils.TxtUtils
+import com.example.kotlin.viewmodel.home.HousepageViewModel
 import com.google.gson.Gson
+import com.shop.base.BaseFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_channel_item.view.*
 import kotlinx.coroutines.Dispatchers
@@ -33,21 +36,15 @@ import java.io.InputStreamReader
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
-class HomeFragment : Fragment() {
-    companion object {
-        val instance by lazy { HomeFragment() }
+class HousePageFragment : BaseFragment<HousepageViewModel, FragmentHousepageBinding>(R.layout.fragment_housepage,HousepageViewModel::class.java) {
+    companion object{
+        val instance by lazy { HousePageFragment() }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun initView() {
         //TODO 协程  挂起的状态
         loadHomeData()
-        return inflater.inflate(R.layout.activity_home, container, false)
     }
-
     private fun loadHomeData() {
         //当前线程的属性：hread.currentThread().name
         var thread_name = Thread.currentThread().name
@@ -67,7 +64,6 @@ class HomeFragment : Fragment() {
         Log.d("TAG", "loadHomeData: ")
 
     }
-
     private fun showCate(categoryList: List<Category>) {
         ry_live_cate.layoutManager = GridLayoutManager(activity, 1)
         ry_live_cate.adapter = CateAdapter(categoryList, activity)
@@ -164,6 +160,15 @@ class HomeFragment : Fragment() {
             val homebean = Gson().fromJson<HomeBean>(sb.toString(), HomeBean::class.java)
             return@run homebean
         }
+    }
+
+    override fun initVM() {
+    }
+
+    override fun initData() {
+    }
+
+    override fun initVariable() {
     }
 
 }

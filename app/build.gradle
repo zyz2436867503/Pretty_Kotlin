@@ -89,14 +89,14 @@ dependencies {
     // 引入multidex库
     implementation 'com.android.support:multidex:1.0.3'
 
-    // room数据库
+   /* // room数据库
     def room_version = "2.2.5"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$room_version"
     // optional - Test helpers
-    testImplementation "androidx.room:room-testing:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"*/
     /*def work_version = "2.4.0"
 
     // (Java only)

@@ -28,22 +28,22 @@ class RetrofitFactory {
     init {
         //通用拦截
         interceptor = Interceptor {
-            chain -> val request = chain.request()
-                .newBuilder()
-                .addHeader("charset","UTF-8")
-                .addHeader("token",MyMmkv.getString(Constants.token))
-                .build()
+                chain -> val request = chain.request()
+            .newBuilder()
+            .addHeader("charset","UTF-8")
+            .addHeader("token", MyMmkv.getString(Constants.token))
+            .build()
 
             chain.proceed(request)
         }
 
         //Retrofit实例化
         retrofit = Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(initClient())
-                .build()
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(initClient())
+            .build()
     }
 
     /*
@@ -51,11 +51,11 @@ class RetrofitFactory {
      */
     private fun initClient(): OkHttpClient {
         return OkHttpClient.Builder()
-                .addInterceptor(LoggingInterceptor())
-                //.addInterceptor(interceptor)
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .readTimeout(60, TimeUnit.SECONDS)
-                .build()
+            .addInterceptor(LoggingInterceptor())
+            //.addInterceptor(interceptor)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .build()
     }
 
     /*
@@ -71,10 +71,14 @@ class RetrofitFactory {
         }
     }
 
-    /*
-        具体服务实例化
-     */
+    //TODO  具体服务实例化
+    //谁调用了create 谁决定T是什么类型 传入的是T 返回的也是T
     fun <T> create(service:Class<T>):T{
         return retrofit.create(service)
     }
+
+    //TODO 这里确定了返回的结果类型 上面不确定 其他都一致
+//    fun create():ServiceApi{
+//        return retrofit.create(ServiceApi::class.java)
+//    }
 }

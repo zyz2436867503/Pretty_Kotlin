@@ -13,26 +13,33 @@ import kotlinx.coroutines.withContext
 * */
 class SystemRepository {
     private lateinit var serviceApi: ServiceApi
+
     //初始化的方法
     init {
-        serviceApi= RetrofitFactory.instance.create(ServiceApi::class.java)
+        serviceApi = RetrofitFactory.instance.create(ServiceApi::class.java)
     }
+
     //刷新token
-    suspend fun refreshToken()= withContext(Dispatchers.IO){
+    suspend fun refreshToken() = withContext(Dispatchers.IO) {
         serviceApi.refreshToken()
     }
+
     /**
      * 获取主页数据
      */
-    suspend fun getHome() = withContext(Dispatchers.IO){
+    suspend fun getHome() = withContext(Dispatchers.IO) {
         serviceApi.getHome()
     }
 
     /**
      * 获取专题数据
      */
-    suspend fun getTopic() = withContext(Dispatchers.IO){
+    suspend fun getTopic() = withContext(Dispatchers.IO) {
         serviceApi.getTopic()
     }
 
+    //TODO 获取多布局数据
+    suspend fun getMore() = withContext(Dispatchers.IO) {
+        serviceApi.getMore()
+    }
 }

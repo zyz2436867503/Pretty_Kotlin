@@ -14,18 +14,20 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.home.ChannelActivity" />
         <activity android:name=".ui.home.NewBindActivity" />
-        <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".test.BaseA" />
         <activity android:name=".test.MainActivity2" />
         <activity android:name=".test.MainActivity" />
         <activity android:name=".SplaceActivity">
+
+        </activity>
+        <activity android:name=".FamilyActivity"/>
+        <activity android:name=".ui.more.MoreActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FamilyActivity"/>
     </application>
 
 </manifest>

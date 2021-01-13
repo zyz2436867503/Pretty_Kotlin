@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vmMore_View_two"
+            type="com.example.kotlin.model.Stu" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="15dp"
+        android:layout_height="160dp">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/iv_item_one_img_two"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+        <TextView
+            android:textSize="16dp"
+            android:textColor="#000000"
+            android:layout_width="0dp"
+            android:text="@{vmMore_View_two.title}"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            app:layout_constraintTop_toTopOf="@id/iv_item_one_img_two"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/iv_item_one_img_two"
+            android:id="@+id/tv_item_title"
+            />
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_width="0dp"
+            android:text="@{vmMore_View_two.createTime}"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:id="@+id/tv_item_time"
+            app:layout_constraintBottom_toBottomOf="@id/iv_item_one_img_two"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
